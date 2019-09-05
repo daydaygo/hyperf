@@ -7,10 +7,32 @@
 - [#418](https://github.com/hyperf-cloud/hyperf/pull/418) Allows send WebSocket message to any fd in current server, even the worker process does not hold the fd
 - [#420](https://github.com/hyperf-cloud/hyperf/pull/420) Added listener for model.
 - [#441](https://github.com/hyperf-cloud/hyperf/pull/441) Automatically close the spare redis client when it is used in low frequency.
+- [#455](https://github.com/hyperf-cloud/hyperf/pull/455) Added `download()` method of `Hyperf\HttpServer\Contract\ResponseInterface`.
+- [#500](https://github.com/hyperf-cloud/hyperf/pull/499) Added fluent method calls of `Hyperf\HttpServer\Contract\ResponseInterface`.
 
 ## Changed
 
 - [#437](https://github.com/hyperf-cloud/hyperf/pull/437) Changed `Hyperf\Testing\Client` handle exception handlers instead of throw an exception directly.
+- [#463](https://github.com/hyperf-cloud/hyperf/pull/463) Simplify `container.php` and improve annotation caching mechanism.
+
+config/container.php
+
+```php
+<?php
+
+use Hyperf\Di\Container;
+use Hyperf\Di\Definition\DefinitionSourceFactory;
+use Hyperf\Utils\ApplicationContext;
+
+$container = new Container((new DefinitionSourceFactory(true))());
+
+if (! $container instanceof \Psr\Container\ContainerInterface) {
+    throw new RuntimeException('The dependency injection container is invalid.');
+}
+return ApplicationContext::setContainer($container);
+```
+
+- [#486](https://github.com/hyperf-cloud/hyperf/pull/486) Changed `getParsedBody` can return JSON formatted data normally.
 
 ## Deleted
 
@@ -21,7 +43,25 @@
 
 - [#448](https://github.com/hyperf-cloud/hyperf/pull/448) Fixed TCP Server does not works when HTTP Server or WebSocket Server exists.
 
-# v1.0.13 - TBD
+# v1.0.14 - TBD
+
+# v1.0.13 - 2019-08-28
+
+## Added
+
+- [#449](https://github.com/hyperf-cloud/hyperf/pull/428) Added an independent component [hyperf/translation](https://github.com/hyperf-cloud/translation), forked by illuminate/translation.
+- [#449](https://github.com/hyperf-cloud/hyperf/pull/449) Added standard error code for grpc-server.
+- [#450](https://github.com/hyperf-cloud/hyperf/pull/450) Added comments of static methods for `Hyperf\Database\Schema\Schema`.
+
+## Changed
+
+- [#451](https://github.com/hyperf-cloud/hyperf/pull/451) Removed routes of magic methods from `AuthController`.
+- [#468](https://github.com/hyperf-cloud/hyperf/pull/468) Default exception handlers catch all exceptions.
+
+## Fixed 
+
+- [#466](https://github.com/hyperf-cloud/hyperf/pull/466) Fixed error when the number of data is not enough to paginate.
+- [#466](https://github.com/hyperf-cloud/hyperf/pull/470) Optimized `vendor:publish` command, if the destination folder exists, then will not repeatedly create the folder.
 
 # v1.0.12 - 2019-08-21
 
@@ -29,6 +69,10 @@
 
 - [#405](https://github.com/hyperf-cloud/hyperf/pull/405) Added Context::override() method.
 - [#415](https://github.com/hyperf-cloud/hyperf/pull/415) Added handlers configuration for logger, now you could config multiple handlers to logger.
+
+## Changed
+
+- [#431](https://github.com/hyperf-cloud/hyperf/pull/431) The third parameter of Hyperf\GrpcClient\GrpcClient::openStream() have been removed.
 
 ## Fixed
 
@@ -39,7 +83,7 @@
 
 ## Deprecated
 
-- [#425](https://github.com/hyperf-cloud/hyperf/pull/425) Marked `Hyperf\HttpServer\HttpServerFactory`, `Hyperf\JsonRpc\HttpServerFactory`, `Hyperf\JsonRpc\TcpServerFactory` as deprecated.
+- [#425](https://github.com/hyperf-cloud/hyperf/pull/425) Marked `Hyperf\HttpServer\HttpServerFactory`, `Hyperf\JsonRpc\HttpServerFactory`, `Hyperf\JsonRpc\TcpServerFactory` as deprecated, will be removed in `v1.1`.
 
 # v1.0.11 - 2019-08-15
 
