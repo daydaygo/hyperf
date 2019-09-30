@@ -77,7 +77,7 @@
 
 - [hyperf/rate-limit](https://github.com/hyperf-cloud/rate-limit) Hyperf 官方提供的基于令牌桶算法的限流组件
 - [hyperf/load-balancer](https://github.com/hyperf-cloud/load-balancer) Hyperf 官方提供的负载均衡组件
-- [hyperf/service-gevernance](https://github.com/hyperf-cloud/service-gevernance) Hyperf 官方提供的服务治理组件
+- [hyperf/service-governance](https://github.com/hyperf-cloud/service-governance) Hyperf 官方提供的服务治理组件
 - [hyperf/tracer](https://github.com/hyperf-cloud/tracer) Hyperf 官方提供的 OpenTracing 分布式调用链追踪组件
 - [hyperf/circuit-breaker](https://github.com/hyperf-cloud/circuit-breaker) Hyperf 官方提供的服务熔断组件
 
@@ -87,7 +87,7 @@
 
 ## ID 生成器
 
-- [hyperf/snawflake](https://github.com/hyperf-cloud/snawflake) Hyperf 官方提供的 Snowflake ID 生成器组件 (beta)
+- [hyperf/snowflake](https://github.com/hyperf-cloud/snowflake) Hyperf 官方提供的 Snowflake ID 生成器组件 (beta)
 
 ## 文档生成
 
