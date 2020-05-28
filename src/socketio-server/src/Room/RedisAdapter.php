@@ -39,22 +39,22 @@ class RedisAdapter implements AdapterInterface
     /**
      * @var NamespaceInterface
      */
-    private $nsp;
+    protected $nsp;
 
     /**
      * @var \Hyperf\Redis\Redis|Redis|RedisProxy
      */
-    private $redis;
+    protected $redis;
 
     /**
      * @var SidProviderInterface
      */
-    private $sidProvider;
+    protected $sidProvider;
 
     /**
      * @var Sender
      */
-    private $sender;
+    protected $sender;
 
     public function __construct(RedisFactory $redis, Sender $sender, NamespaceInterface $nsp, SidProviderInterface $sidProvider)
     {
@@ -121,18 +121,14 @@ class RedisAdapter implements AdapterInterface
                     if (isset($pushed[$sid])) {
                         continue;
                     }
-                    if ($this->isLocal($sid)) {
-                        $result[] = $sid;
-                        $pushed[$sid] = true;
-                    }
+                    $result[] = $sid;
+                    $pushed[$sid] = true;
                 }
             }
         } else {
             $sids = $this->redis->sMembers($this->getStatKey());
             foreach ($sids as $sid) {
-                if ($this->isLocal($sid)) {
-                    $result[] = $sid;
-                }
+                $result[] = $sid;
             }
         }
         return $result;
